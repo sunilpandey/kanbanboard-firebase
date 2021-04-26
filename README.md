@@ -1,27 +1,37 @@
 # Kanbanboard
+![](doc-res/kanban-board.gif)
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.0.7.
+This project is build with firebase database and angular. It demonstrate basic crude operations with firebase database.
 
-## Development server
+## Add/Edit Form
+Add/Edit form used for adding new items to board and also used for updating existing items. It is build on reactive form apis of angular which is utilising validations and observers apis to maintain data consistency while feeding values in different fields.
+![](doc-res/reactive-form.png)
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+## Change status by drag and drop to respective list
+![](doc-res/drag-drop.png)
 
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Technology used for creating this project
+* RxJs
+* Firebase database
+* Reactive forms
+* HTML drag and drop
+* CSS Flexbox
 
 ## Build
+* Create your own project in firebase and replace firebase api keys in environment.ts file
+```typescript
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+export const environment = {
+  ...
+  firebaseConfig: {
+    apiKey: "<api_Key>",
+    authDomain: "<auth_Domain>",
+    projectId: "<project_id>",
+    storageBucket: "<storage_bucket>",
+    messagingSenderId: "<messaging_sender_id>",
+    appId: "<app_id>",
+    measurementId: "<measurement_id>"
+  }  
+};
+```
+* Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
