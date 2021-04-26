@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "kanbanboard-ca277": {
+      "hosting": {
+        "kanbanboard": [
+          "kanbanboard-ca277"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "kanbanboard-ca277"
+  }
+}

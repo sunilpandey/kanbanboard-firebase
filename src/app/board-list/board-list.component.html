@@ -1,0 +1,22 @@
+<div style="padding: 20px; display: flex; flex-direction: column;">
+    <div style="display: flex;justify-content: center; align-items: center; margin: 1rem;">
+        <mat-form-field style="flex: 1 1 auto;">
+            <mat-icon style="position: absolute; right: 0; top: 0;" color="primary">search</mat-icon>
+            <input type="text" matInput placeholder="Search Board" #searchInput/>
+        </mat-form-field>
+        <button mat-flat-button color="primary" style="margin-left: .2rem;" (click)="boardListService.addBoard(searchInput.value)">
+            <mat-icon>add</mat-icon>
+        </button>
+    </div>
+    <ng-container  *ngFor="let board of boardListService.getBoardList(searchInput.value) | async">
+        <mat-card style="margin-bottom: .5rem;">
+            {{board.name}}
+            <div style="display: flex; position: absolute; height: 100%;right:10px; top: 0; align-items:center;">
+                <button mat-flat-button (click)="loadBoard(board.name)">
+                    <mat-icon>arrow_forward</mat-icon>
+                </button>
+            </div>
+        </mat-card>
+
+    </ng-container>
+</div>

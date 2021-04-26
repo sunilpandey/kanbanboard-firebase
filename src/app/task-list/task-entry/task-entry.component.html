@@ -1,0 +1,32 @@
+<div class="entry-container" [formGroup]="formGroup">
+    <h2>Add Task</h2>
+    <mat-form-field>
+        <mat-label>Title</mat-label>
+        <input type="text" matInput autocomplete="off" aria-autocomplete="off" formControlName="title" />
+        <mat-error *ngIf="formGroup.controls.title.errors?.required">Title is required</mat-error>
+        <mat-error *ngIf="formGroup.controls.title.errors?.maxlength">Title can be maximum of length
+            {{formGroup.controls.title.errors?.maxlength.requiredLength}}</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Description</mat-label>
+        <textarea type="text" matInput autocomplete="off" cols="10" rows="3" formControlName="description"></textarea>
+        <mat-error *ngIf="formGroup.controls.description.errors?.required">Description is required</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Status</mat-label>
+        <mat-select formControlName="status">
+            <mat-option *ngFor="let option of statusOptions" [value]="option">{{option}}</mat-option>
+        </mat-select>
+        <mat-error *ngIf="formGroup.controls.status.errors?.required">Status is required</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Estimate (in hr)</mat-label>
+        <input type="text" matInput  formControlName="estimation"/>
+        <mat-error *ngIf="formGroup.controls.estimation.errors?.pattern">Estimation must be a number</mat-error>
+    </mat-form-field>
+    <!-- <mat-divider></mat-divider> -->
+    <div class="actions-container">
+        <button mat-raised-button color="primary" (click)="saveButtonClicked()" [disabled]="formGroup.invalid">{{this.task ? "Update" : "Save"}}</button>
+        <button mat-raised-button color="warn" (click)="cancelButtonClicked()">Cancel</button>
+    </div>
+</div>

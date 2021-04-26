@@ -1,0 +1,95 @@
+<div class="tasklist-container">
+    <button mat-raised-button (click)="addButtonClicked()" color="primary">Create Task</button>
+    <div class="task-table">
+        <div class="task-section" cdkDragHandle>
+            <h2>To Do</h2>
+            <mat-divider></mat-divider>
+            <div class="tasklist" 
+                (dragover)="dragOver(openElement, 'Open', $event)" 
+                (dragleave)="dragLeave(openElement, 'Open')"
+                (drop)="drop(openElement, 'Open')"
+                style="position: relative;" 
+                #openElement>
+                <div class="layover-div"></div>
+                <ng-container *ngFor="let task of taskListService.taskList | taskStatus : 'Open' | async">
+                    <mat-card draggable="true" (dragstart)="dragStart(task)" (dragend)="dragEnd()">
+                        <div style="position: absolute; right: 0; top: 0;background-color: aliceblue;" class="edit-button">
+                            <button mat-icon-button color="accent" (click)="editButtonClicked(task)"><mat-icon>edit</mat-icon></button>
+                            <button mat-icon-button color="warn" (click)="deleteButtonClicked(task)"><mat-icon>delete</mat-icon></button>
+                        </div>
+                        <mat-card-title>{{task.title}}</mat-card-title>
+                        <mat-card-subtitle>{{task.description}}</mat-card-subtitle>
+                        <div style="display: flex; justify-content: flex-end;">
+                            <button mat-stroked-button color="primary" (click)="changeTaskStatus(task, 'In Progress')">
+                                <mat-icon>arrow_forward</mat-icon>
+                            </button>
+                        </div>
+                    </mat-card>
+                </ng-container>
+            </div>
+        </div>
+        <div class="task-section">
+            <h2>In Progress</h2>
+            <mat-divider></mat-divider>
+            <div class="tasklist"
+                (dragover)="dragOver(inProgressElement, 'In Progress', $event)" 
+                (dragleave)="dragLeave(inProgressElement, 'In Progress')"
+                (drop)="drop(inProgressElement, 'In Progress')"
+                style="position: relative;"
+                #inProgressElement
+                >
+                <div class="layover-div"></div>
+                <ng-container *ngFor="let task of taskListService.taskList | taskStatus : 'In Progress' | async">
+                    <mat-card draggable="true" (dragstart)="dragStart(task)">
+                        <div style="position: absolute; right: 0; top: 0;background-color: aliceblue;" class="edit-button">
+                            <button mat-icon-button color="accent" (click)="editButtonClicked(task)"><mat-icon>edit</mat-icon></button>
+                            <button mat-icon-button color="warn" (click)="deleteButtonClicked(task)"><mat-icon>delete</mat-icon></button>
+                        </div>
+                        <mat-card-title>{{task.title}}</mat-card-title>
+                        <mat-card-subtitle>{{task.description}}</mat-card-subtitle>
+                        <div style="display: flex; justify-content: space-between;">
+                            <button mat-stroked-button color="primary" (click)="changeTaskStatus(task, 'Open')">
+                                <mat-icon>arrow_back</mat-icon>
+                            </button>
+                            <button mat-stroked-button color="primary" (click)="changeTaskStatus(task, 'Closed')">
+                                <mat-icon>arrow_forward</mat-icon>
+                            </button>
+                        </div>
+                    </mat-card>
+                </ng-container>
+            </div>
+        </div>
+        <div class="task-section">
+            <h2>Closed</h2>
+            <mat-divider></mat-divider>
+            <div class="tasklist"
+                (dragover)="dragOver(closedElement, 'Closed', $event)" 
+                (dragleave)="dragLeave(closedElement, 'Closed')"
+                (drop)="drop(closedElement, 'Closed')"
+                style="position: relative;"
+                #closedElement
+            >
+                <div class="layover-div"></div>
+                <ng-container *ngFor="let task of taskListService.taskList | taskStatus : 'Closed' | async">
+                    <mat-card draggable="true" (dragstart)="dragStart(task)">
+                        <div style="position: absolute; right: 0; top: 0;background-color: aliceblue;" class="edit-button">
+                            <button mat-icon-button color="accent" (click)="editButtonClicked(task)"><mat-icon>edit</mat-icon></button>
+                            <button mat-icon-button color="warn" (click)="deleteButtonClicked(task)"><mat-icon>delete</mat-icon></button>
+                        </div>
+                        <mat-card-title>{{task.title}}</mat-card-title>
+                        <mat-card-subtitle>{{task.description}}</mat-card-subtitle>
+                        <div>
+                            <button mat-stroked-button color="primary" (click)="changeTaskStatus(task, 'In Progress')">
+                                <mat-icon>arrow_back</mat-icon>
+                            </button>
+                        </div>
+                    </mat-card>
+                </ng-container>
+            </div>
+        </div>
+
+    </div>
+    <div>
+
+    </div>
+</div>
