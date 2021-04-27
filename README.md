@@ -35,3 +35,6 @@ export const environment = {
 };
 ```
 * Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+
+## Hosted url of application
+Application is deployed on firebase. To see running application click [here](https://kanbanboard-ca277.web.app/)
